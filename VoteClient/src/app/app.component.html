@@ -1,0 +1,64 @@
+<h2>Voting app</h2>
+
+<div style="display:flex; gap:40px; margin-bottom:20px">
+
+  <table border="1" width="300">
+    <thead>
+      <tr><th colspan="2">Voters</th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Has voted</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of voters">
+        <td>{{ v.name }}</td>
+        <td>{{ v.hasVoted ? 'Yes' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table border="1" width="300">
+    <thead>
+      <tr><th colspan="2">Candidates</th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of candidates">
+        <td>{{ c.name }}</td>
+        <td>{{ c.votes }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<hr />
+
+
+<div style="display:flex; align-items:center; gap:10px">
+
+  <span>I am</span>
+
+  <select [(ngModel)]="selectedVoterId">
+    <option [ngValue]="null">Select voter</option>
+    <option *ngFor="let v of voters" [ngValue]="v.id">
+      {{ v.name }}
+    </option>
+  </select>
+
+  <span>I vote for</span>
+
+  <select [(ngModel)]="selectedCandidateId">
+    <option [ngValue]="null">Select candidate</option>
+    <option *ngFor="let c of candidates" [ngValue]="c.id">
+      {{ c.name }}
+    </option>
+  </select>
+
+  <button (click)="submitVote()">Submit</button>
+
+</div>
